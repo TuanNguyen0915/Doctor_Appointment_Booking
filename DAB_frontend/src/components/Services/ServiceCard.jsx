@@ -12,7 +12,7 @@ const ServiceCard = ({ service, index }) => {
       <p className="text-[16px] leading-7 font-[400] text-textColor mt-4">
         {service.desc}
       </p>
-      <div className="flex items-center justify-between mt-[30px]">
+      <div className="flex items-center md:justify-between justify-around mt-[30px]">
         <Link
           to='/doctors'
           className="my-4 p-3 border-[1px] border-textColor hover:bg-primaryColor hover:text-white hover:border-primaryColor rounded-full "
