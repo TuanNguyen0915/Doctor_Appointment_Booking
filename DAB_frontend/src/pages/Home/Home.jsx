@@ -1,15 +1,23 @@
 import NavBar from "../../components/NavBar/NavBar"
 import Footer from "../../components/Footer/Footer"
+// data
 import { heroCounters } from "../../assets/data/hero-section"
+// images
+import heroImg01 from "../../assets/images/hero-img01.png"
+import heroImg02 from "../../assets/images/hero-img02.png"
+import heroImg03 from "../../assets/images/hero-img03.png"
+
 
 const Home = () => {
   return (
     <section>
+      {/* NAVBAR */}
       <NavBar />
       {/* HERO SECTION */}
       <section className="hero__section pt-[60px] 2xl:h-[800px]">
         <div className="container">
           <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
+            {/* hero content */}
             <div>
               <div className="lg:w-[570px]">
                 <h1
@@ -33,35 +41,27 @@ const Home = () => {
                     </h2>
                     <span
                       className={`${counter.color} lg:w-[120px] w-[100px] h-2 rounded-full block lg:mt-[-10px] mt-[-14px]`}></span>
-                    <p
-                      className="text__para"
-                    >
+                    <p className="text__para">
                       {counter.text}
                     </p>
                   </div>
                 ))}
               </div>
-              {/* <div className="lg:mt-[70px] mt-[30px] flex lg:flex-row flex-col lg:items-center lg:gap-[30px] gap-5">
-                <div>
-                  <h2 className="lg:text-[44px] text-[36px] lg:leading-[54px] leading-[56px] font-[700] text-headingColor">30+</h2>
-                  <span className="w-[100px] h-2 bg-yellowColor rounded-full block mt-[-14px]"></span>
-                  <p className="text__para">Years of Experience</p>
-                </div>
-                <div>
-                  <h2 className="lg:text-[44px] text-[36px] lg:leading-[54px] leading-[56px] font-[700] text-headingColor">15+</h2>
-                  <span className="w-[100px] h-2 bg-purpleColor rounded-full block mt-[-14px]"></span>
-                  <p className="text__para">Clinic Location</p>
-                </div>
-                <div>
-                  <h2 className="lg:text-[44px] text-[36px] lg:leading-[54px] leading-[56px] font-[700] text-headingColor">100%</h2>
-                  <span className="w-[100px] h-2 bg-irisBlueColor rounded-full block mt-[-14px]"></span>
-                  <p className="text__para">Patient Satisfaction</p>
-                </div>
-              </div> */}
+            </div>
+            {/* hero images */}
+            <div className="flex gap-[30px] justify-end">
+              <div>
+                <img src={heroImg01} alt="doctor" className="w-full mt-[50px]"/>
+              </div>
+              <div className="mt-[30px]">
+                <img src={heroImg02} alt="" className="w-full mb-[30px]"/>
+                <img src={heroImg03} alt="" className="w-full"/>
+              </div>
             </div>
           </div>
         </div>
       </section>
+      {/* FOOTER */}
       <Footer />
     </section>
   )
