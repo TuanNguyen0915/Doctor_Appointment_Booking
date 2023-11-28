@@ -1,6 +1,5 @@
 // npm modules
 import { NavLink, Link } from 'react-router-dom'
-import { useEffect, useRef } from 'react'
 // data
 import navLinks from '../../assets/data/navLink'
 // images
