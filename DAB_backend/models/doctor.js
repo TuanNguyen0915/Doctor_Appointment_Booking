@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const doctorSchema = new mongoose.Schema({
-  email: { type: String, require: true, unique: true },
-  password: { type: String, require: true },
-  name: { type: String, require: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  name: { type: String, required: true },
   phone: { type: String },
   photo: { type: String },
   ticketPrice: { type: String },

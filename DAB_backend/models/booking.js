@@ -2,17 +2,17 @@ import mongoose from "mongoose"
 
 const bookingSchema = new mongoose.Schema({
   doctor: {
-    type: mongoose.Types.ObjectId, ref: "Doctor", require: true
+    type: mongoose.Types.ObjectId, ref: "Doctor", required: true
   },
   user: {
-    type: mongoose.Types.ObjectId, ref: "User", require: true
+    type: mongoose.Types.ObjectId, ref: "User", required: true
   },
   appointmentFee: {
-    type: String, require: true
+    type: String, required: true
   },
   appointmentDate: {
     type: Date,
-    require: true
+    required: true
   },
   status: {
     type: String,
