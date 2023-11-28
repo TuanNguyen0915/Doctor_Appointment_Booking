@@ -1,12 +1,23 @@
+// npm modules
+import { Routes, Route } from 'react-router-dom'
+// pages
+import Home from './pages/Home/Home'
+
+// components
+
+// css
 import './App.css'
+
 
 
 function App() {
 
   return (
-    <div className='flex justify-center items-center'>
-      <h1 className='text-[30px] text-bold text-orange-600'>Hello world</h1>
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </>
   )
 }
 
