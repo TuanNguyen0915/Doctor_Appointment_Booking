@@ -1,7 +1,12 @@
+// npm modules
+import { Link } from "react-router-dom"
+import { BsArrowRight } from "react-icons/bs"
+// components
 import NavBar from "../../components/NavBar/NavBar"
 import Footer from "../../components/Footer/Footer"
 // data
 import { heroCounters } from "../../assets/data/hero-section"
+import { heroServices } from "../../assets/data/hero-section"
 // images
 import heroImg01 from "../../assets/images/hero-img01.png"
 import heroImg02 from "../../assets/images/hero-img02.png"
@@ -51,16 +56,49 @@ const Home = () => {
             {/* hero images */}
             <div className="flex gap-[30px] justify-end">
               <div>
-                <img src={heroImg01} alt="doctor" className="w-full mt-[50px]"/>
+                <img src={heroImg01} alt="doctor" className="w-full mt-[50px]" />
               </div>
               <div className="mt-[30px]">
-                <img src={heroImg02} alt="" className="w-full mb-[30px]"/>
-                <img src={heroImg03} alt="" className="w-full"/>
+                <img src={heroImg02} alt="" className="w-full mb-[30px]" />
+                <img src={heroImg03} alt="" className="w-full" />
               </div>
             </div>
           </div>
         </div>
       </section>
+      {/* HERO SECTION END */}
+
+      <section>
+        <div className="container">
+          <div className="lg:w-[470px] mx-auto">
+            <h2
+              className="heading text-center"
+            >
+              Providing the best medical services
+            </h2>
+            <p className="text_para text-center mt-2">
+              World-class care for everyone. Our health System offers unmatched, expert health care.
+            </p>
+          </div>
+          <div className="my-[30px] mx-5">
+            <div
+              className="flex lg:flex-row flex-col justify-between items-center py-[30px] px-5"
+            >
+              {heroServices.map((service, index) => (
+                <div key={index} className={`flex flex-col justify-center items-center px-5 lg:border-b-0 ${index !== (heroServices.length - 1)?'border-b-[1px]':''} lg:mb-0 ${index !== (heroServices.length - 1)?'mb-[40px]':''}`}>
+                  <img src={service.icon} alt="icon" />
+                  <h2 className="text-[16px] leading-9 text-headingColor font-[700]">{service.title}</h2>
+                  <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">{service.text}</p>
+                  <Link to={service.link} className="my-4 p-3 border-[1px] border-textColor hover:bg-primaryColor hover:text-white hover:border-primaryColor rounded-full ">
+                    <BsArrowRight className="w-4 h-4 " />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <Footer />
     </section>

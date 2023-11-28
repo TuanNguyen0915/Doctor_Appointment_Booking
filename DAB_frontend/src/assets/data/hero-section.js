@@ -16,4 +16,25 @@ const heroCounters = [
   },
 ]
 
-export { heroCounters }
+const heroServices = [
+  {
+    icon : './src/assets/images/icon01.png',
+    title: 'Find a Doctor',
+    text: 'World-class for everyone. Our health System offer unmatched, expect health care. From the lab to the clinic.',
+    link: '/doctors'
+  },
+  {
+    icon : './src/assets/images/icon02.png',
+    title: 'Find a Location',
+    text: 'World-class for everyone. Our health System offer unmatched, expect health care. From the lab to the clinic.',
+    link: ''
+  }, 
+  {
+    icon : './src/assets/images/icon03.png',
+    title: 'Book Appointment',
+    text: 'World-class for everyone. Our health System offer unmatched, expect health care. From the lab to the clinic.',
+    link: ''
+  }
+]
+
+export { heroCounters, heroServices }
