@@ -1,7 +1,7 @@
 // npm modules
 import { Routes, Route } from 'react-router-dom'
 // pages
-import HomePage from './pages/Home/Home'
+import HomePage from './pages/HomePage/HomePage'
 
 // components
 
