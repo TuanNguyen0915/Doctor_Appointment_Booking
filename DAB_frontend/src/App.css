@@ -22,6 +22,74 @@ body {
   background: white;
 }
 
+/* SWIPER */
+.swiper {
+  padding-bottom: 50px;
+}
+
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  border: 1px solid #181a1e !important;
+  background: #fff !important;
+
+}
+
+.swiper-pagination-bullet-active {
+  width: 10px !important;
+  height: 10px !important;
+  background: #0067ff !important;
+  border: none !important;
+  opacity: 1 !important;
+}
+
+
+.swiper-slide.swiper-slide-next {
+  background: #0067ff;
+  border-radius: 12px;
+  box-shadow: 0px 20px 10px rgba(0, 103, 255, 0.3) !important;
+}
+
+.swiper-slide.swiper-slide-next h4 {
+  color: white;
+}
+
+.swiper-slide.swiper-slide-next p {
+  color: white;
+}
+
+
+.autoplay-progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--swiper-theme-color);
+}
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: var(--swiper-theme-color);
+  fill: none;
+  stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+
+
 @media only screen and (max-width:768px) {
   .navigation {
     width: 100%;
@@ -45,6 +113,7 @@ body {
     flex-direction: column;
     justify-content: center;
   }
+
   .show_menu {
     display: block;
   }

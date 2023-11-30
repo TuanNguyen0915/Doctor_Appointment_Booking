@@ -7,7 +7,7 @@ import Services from "../../components/Services/Services"
 import Feature from "../../components/Feature/Feature"
 import Doctor from "../../components/Doctor/Doctor"
 import Faq from "../../components/FAQ/FAQ"
-
+import Testimonial from "../../components/Testimonial/Testimonial"
 const HomePage = () => {
   return (
     <section>
@@ -18,6 +18,7 @@ const HomePage = () => {
       <Feature />
       <Doctor />
       <Faq />
+      <Testimonial />
       <Footer />
     </section>
   )
