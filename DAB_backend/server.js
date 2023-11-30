@@ -1,24 +1,34 @@
+// npm
+import 'dotenv/config.js'
 import express from 'express'
 import morgan from 'morgan'
-import dotenv from 'dotenv/config'
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
 
+// connect mongodb
 import './config/database.js'
 
+
+// import routers
+import { router as authRouter } from './routes/auth.js'
+
+// create app and port
 const app = express()
+const port = process.env.PORT || 3001
 
 //middlewares
+const corsOptions = {
+  origin: true
+}
 app.use(express.json())
 app.use(morgan('dev'))
+app.use(cookieParser())
+app.use(cors(corsOptions))
 
 //routes
-app.get('/', (req, res) => {
-  res.status(200).send({
-    message: "server running"
-  })
-})
+app.use('/api/auth', authRouter) //localhost:3001/auth/
 
 // listen port
-const port = process.env.PORT || 3001
 app.listen(port, () => {
   console.log(`Server is running at ${port}`)
 })

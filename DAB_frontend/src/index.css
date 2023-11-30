@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
+@layer base {
   section {
     @apply py-[20px]
   }
-} */
+}
 
 @layer components {
   .container {
