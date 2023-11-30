@@ -12,7 +12,7 @@ const FaqCard = ({ faq }) => {
   return (
     <div className="p-3 lg:p-5 rounded-[12px] border-[1px] border-[#d9dce2] mb-5 cursor-pointer">
       <div
-        className="flex items-center justify-between gap-5"
+        className="flex items-center justify-between gap-5 "
         onClick={toggleAccordion}
       >
         <h4 className="text-[16px] leading-7 lg:text-[22px] lg:leading-8 text-headingColor">

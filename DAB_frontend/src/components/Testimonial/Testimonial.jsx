@@ -17,7 +17,7 @@ const Testimonial = () => {
     progressCircle.current.style.setProperty('--progress', 1 - progress)
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`
   }
-
+  
   return (
     <section>
       <div className="container lg:mt-[8rem] mt-[4rem]">
