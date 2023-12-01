@@ -2,10 +2,26 @@ import Doctor from "../models/doctor.js"
 
 export const getAllDoctors = async (req, res) => {
   try {
-    const allDoctor = await Doctor.find({})
+
+    // find doctor by using find_box in front end
+    const { query } = req.query
+    let doctors
+    if (query) {
+      doctors = await Doctor.find({
+        isApproved: 'approved',
+        $or: [
+          { name: { $regex: query, $option: 'i' } },
+          { specialization: { $regex: query, $option: 'i' } },
+
+        ]
+      })
+    } else {
+      doctors = await Doctor.find({ isApproved: 'approved' })
+    }
+
     res.status(200).json({
       success: true,
-      data: allDoctor
+      data: doctors
     })
   } catch (error) {
     console.log(error)
