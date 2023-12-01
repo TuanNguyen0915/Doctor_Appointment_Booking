@@ -3,6 +3,18 @@ import Doctor from '../models/doctor.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
+
+const generateToken = user => {
+  // create password
+  // go to terminal -> node -> crypto.randomBytes(256).toString('base64')
+  return jwt.sign(
+    { id: user._id, role: user.role },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: '15d' }
+  )
+}
+
+
 export const register = async (req, res) => {
   const { email, password, name, role, photo, gender } = req.body
   try {
@@ -53,12 +65,39 @@ export const register = async (req, res) => {
   }
 }
 
-
 export const login = async (req, res) => {
   try {
+    let user = null
+
+    let patient = await User.findOne({ email: req.body.email })
+    let doctor = await Doctor.findOne({ email: req.body.email })
+
+    // check user exists or not
+    if (patient) user = patient
+    else if (doctor) user = doctor
+
+    if (!user) {
+      res.status(400).json({ message: "The user doesn't exist." })
+    }
+
+    //checking password with hashPassword
+    const isPasswordMatching = bcrypt.compare(req.body.password, user.password)
+    if (!isPasswordMatching) {
+      res.status(400).json({ message: "The password doesn't match." })
+    }
+    // if password matching, create token
+    const token = generateToken(user)
+
+    const { password, role, appointments, ...rest } = user._doc
+
+    res
+      .status(200)
+      .json(
+        { status: true, message: "Successfully login", token, data: { ...rest }, role }
+      )
 
   } catch (error) {
     console.log(error)
-    return res.status(500).json({ error: error.message })
+    res.status(500).json({ error: error.message })
   }
 }
