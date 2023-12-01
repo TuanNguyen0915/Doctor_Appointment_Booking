@@ -34,7 +34,7 @@ export const getAllDoctors = async (req, res) => {
 
 export const showDoctor = async (req, res) => {
   try {
-    const selectedDoctor = await Doctor.findById(req.params.doctorId)
+    const selectedDoctor = await Doctor.findById(req.params.doctorId).populate("reviews")
     res.status(200).json(
       {
         success: true,
