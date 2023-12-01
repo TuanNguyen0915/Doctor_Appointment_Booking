@@ -101,28 +101,3 @@ export const login = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 }
-
-
-export const updateUser = async (req, res) => {
-  try {
-    let selectedUser = null
-    if (req.body.role === 'patient') {
-      selectedUser = await User.findByIdAndUpdate(
-        req.params.userId,
-        res.body,
-        { new: true }
-      )
-    } else if (req.body.role === 'doctor') {
-      selectedUser = await Doctor.findByIdAndUpdate(
-        req.params.userId,
-        res.body,
-        { new: true }
-      )
-    }
-
-    res.status(200).json({ success: true, message: "Successfully updated.", data: selectedUser })
-
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Fail to update." })
-  }
-}

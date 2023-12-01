@@ -11,6 +11,7 @@ import './config/database.js'
 
 // import routers
 import { router as authRouter } from './routes/auth.js'
+import { router as userRouter } from './routes/user.js'
 
 // create app and port
 const app = express()
@@ -27,6 +28,8 @@ app.use(cors(corsOptions))
 
 //routes
 app.use('/api/auth', authRouter) //localhost:3001/auth/
+app.use('/api/user', userRouter) //localhost:3001/user/
+
 
 // listen port
 app.listen(port, () => {
