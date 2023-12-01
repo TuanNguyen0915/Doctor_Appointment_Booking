@@ -3,11 +3,18 @@ import Footer from "../../components/Footer/Footer"
 import { useState } from "react"
 
 import signUpImg from '../../assets/images/signup.gif'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import uploadImageToCloudinary from "../../utils/uploadCloundinary"
+import { toast } from 'react-toastify'
+import HashLoader from 'react-spinners/HashLoader'
+
+const BASE_URL = import.meta.env.VITE_BACK_END_SERVER_URL
 
 const Register = () => {
+  const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState('')
   const [previewURL, setPreviewURL] = useState('')
+  const [loading, setLoading] = useState(false)
 
 
   const [formData, setFormData] = useState({
@@ -15,7 +22,7 @@ const Register = () => {
     email: '',
     password: '',
     role: 'patient',
-    gender: '',
+    gender: 'other',
     photo: '',
   })
 
@@ -27,12 +34,37 @@ const Register = () => {
   const handleFileInputChange = async (event) => {
     const file = event.target.files[0]
     //using cloudinary to upload photo
-    console.log(file)
+    const data = await uploadImageToCloudinary(file)
+    setPreviewURL(data.url)
+    setSelectedFile(data.url)
+    setFormData({ ...formData, photo: data.url })
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
+    setLoading(true)
+    try {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: 'post',
+        headers: {
+          'Content-Type': "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
 
+      const { message } = await res.json()
+      if (!res.ok) {
+        throw new Error(message)
+      }
+
+      setLoading(false)
+      toast.success(message)
+      navigate('/login')
+    } catch (error) {
+      toast.error(error.message)
+      setLoading(false)
+    }
+  
   }
 
   return (
@@ -98,7 +130,9 @@ const Register = () => {
                     className="text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
                     value={formData.gender}
                     onChange={handleOnChange}
+                    required
                   >
+                    <option >Select</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
@@ -107,7 +141,13 @@ const Register = () => {
               </div>
               {/* UPLOAD AVATAR */}
               <div className="my-5 px-3 flex items-center gap-3">
-                <h3 className="text-[16px] font-[600]">Upload your avatar: </h3>
+                {selectedFile &&
+                  <figure
+                    className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center"
+                  >
+                    <img src={previewURL} alt="avatar" className="w-full rounded-full" />
+                  </figure>
+                }
                 <div className="relative">
                   <input
                     type="file"
@@ -123,7 +163,12 @@ const Register = () => {
                 </div>
               </div>
               {/* BUTTON */}
-              <button type='submit' className="btn w-full rounded-lg ">Register</button>
+              <button
+                disabled={loading && true}
+                type='submit' className="btn w-full rounded-lg "
+              >
+                {loading ? <HashLoader size={35} color="#ffffff"/> : 'Register'}
+              </button>
             </div>
             <p
               className="mt-5 text-textColor text-center"
