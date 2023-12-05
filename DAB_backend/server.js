@@ -1,41 +1,40 @@
-// npm
-import 'dotenv/config.js'
+import 'dotenv/config'
+import mongoose from "mongoose"
 import express from 'express'
-import morgan from 'morgan'
-import cors from 'cors'
 import cookieParser from 'cookie-parser'
-
-// connect mongodb
+import cors from "cors"
+import jwb from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
+// connect mongoose to mongodb
 import './config/database.js'
 
+// import routes
+import { router as AuthRouter } from './routers/auth.js'
+import { router as UserRouter } from './routers/user.js'
+import { router as DoctorRouter } from './routers/doctor.js'
+import { router as ReviewRouter } from './routers/review.js'
 
-// import routers
-import { router as authRouter } from './routes/auth.js'
-import { router as userRouter } from './routes/user.js'
-import { router as doctorRouter } from './routes/doctor.js'
-import { router as reviewRouter } from './routes/review.js'
-
-// create app and port
 const app = express()
 const port = process.env.PORT || 3001
 
-//middlewares
-const corsOptions = {
+const corsOption = {
   origin: true
 }
+
+// middlewares
 app.use(express.json())
-app.use(morgan('dev'))
 app.use(cookieParser())
-app.use(cors(corsOptions))
-
-//routes
-app.use('/api/auth', authRouter) //localhost:3001/auth/
-app.use('/api/users', userRouter) //localhost:3001/user/
-app.use('/api/doctors', doctorRouter) //localhost:3001/doctor/
-app.use('/api/reviews', reviewRouter) //localhost:3001/review/
+app.use(cors(corsOption))
 
 
-// listen port
+// mount routers
+app.use('/api/auth', AuthRouter)
+app.use('/api/users', UserRouter)
+app.use('/api/doctors', DoctorRouter)
+app.use('/api/reviews', ReviewRouter)
+
+
+
 app.listen(port, () => {
-  console.log(`Server is running at ${port}`)
+  console.log("Server is running at", port)
 })

@@ -1,9 +1,8 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const db = mongoose.connection
 
 mongoose.connect(process.env.DATABASE_URL)
-
-db.on('connected', function () {
+db.on('connected', () => {
   console.log(`Connected to MongoDB ${db.name} at ${db.host}:${db.port}`)
 })
