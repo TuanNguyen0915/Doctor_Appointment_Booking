@@ -44,27 +44,24 @@ const Register = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const res = await fetch(`${BASE_URL}/auth/register`, {
+      const result = await fetch(`${BASE_URL}/auth/register`, {
         method: 'post',
         headers: {
           'Content-Type': "application/json"
         },
         body: JSON.stringify(formData)
       })
-
-      const { message } = await res.json()
-      if (!res.ok) {
+      const { message } = await result.json()
+      if (!result.ok) {
+        setLoading(false)
         throw new Error(message)
       }
-
       setLoading(false)
       toast.success(message)
       navigate('/login')
     } catch (error) {
       toast.error(error.message)
-      setLoading(false)
     }
-  
   }
 
   return (
@@ -167,7 +164,7 @@ const Register = () => {
                 disabled={loading && true}
                 type='submit' className="btn w-full rounded-lg "
               >
-                {loading ? <HashLoader size={35} color="#ffffff"/> : 'Register'}
+                {loading ? <HashLoader size={35} color="#ffffff" /> : 'Register'}
               </button>
             </div>
             <p

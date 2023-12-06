@@ -1,9 +1,16 @@
 import NavBar from "../../components/NavBar/NavBar"
 import Footer from "../../components/Footer/Footer"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useState, useContext } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from 'react-toastify'
+import { AuthContext } from "../../context/AuthContext"
+
+const BASE_URL = import.meta.env.VITE_BACK_END_SERVER_URL
 
 const Login = () => {
+  const navigate = useNavigate()
+  const { dispatch } = useContext(AuthContext)
+  // const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -16,8 +23,36 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
+    // setLoading(true)
+    try {
+      const result = await fetch(`${BASE_URL}/auth/login`, {
+        method: 'post',
+        headers: {
+          'Content-Type': "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+      const res = await result.json()
+      if (!result.ok) {
+        // setLoading(false)
+        throw new Error(res.message)
+      }
 
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload: res.data,
+        token: res.token,
+        role: res.role
+      })
+
+      // setLoading(false)
+      toast.success(res.message)
+      navigate('/')
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
+
   return (
     <>
       <NavBar />
