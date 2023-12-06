@@ -5,7 +5,6 @@ import { useRef, useEffect, useContext } from 'react'
 import navLinks from '../../assets/data/navLink'
 // images
 import logo from '../../assets/images/logo.png'
-import userImg from '../../assets/images/avatar-icon.png'
 // icons
 import { BiMenu } from 'react-icons/bi'
 import { AuthContext } from '../../context/AuthContext.jsx'
@@ -68,7 +67,7 @@ const NavBar = () => {
                     }`}>
                   <div className='w-[35px] h-[35px] rounded-full mr-4'>
                     <img
-                      src={`${user?.photo ? user.photo : userImg}`}
+                      src={user?.photo}
                       alt=""
                       className='w-full rounded-full' />
                   </div>
