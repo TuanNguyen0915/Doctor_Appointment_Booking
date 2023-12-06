@@ -11,7 +11,7 @@ router.get('/', DoctorCtrl.getAllDoctors)
 router.get('/:doctorId', DoctorCtrl.showDoctor)
 router.put('/:doctorId', authenticate, restrict(['doctor']), DoctorCtrl.updateDoctor)
 router.delete('/:doctorId', authenticate, restrict(['doctor']), DoctorCtrl.deleteDoctor)
-//reviews
 
+router.get('/profile/me', authenticate, restrict(['doctor']), DoctorCtrl.getDoctorProfile)
 
 export { router }
