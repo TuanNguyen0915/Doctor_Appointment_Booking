@@ -9,12 +9,12 @@ const BASE_URL = import.meta.env.VITE_BACK_END_SERVER_URL
 
 const Login = () => {
   const navigate = useNavigate()
-  const { dispatch } = useContext(AuthContext)
   // const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
+  const { dispatch } = useContext(AuthContext)
 
   const handleOnChange = e => {
     const { name, value } = e.target
@@ -34,18 +34,19 @@ const Login = () => {
       })
       const res = await result.json()
       if (!result.ok) {
-        // setLoading(false)
         throw new Error(res.message)
       }
 
       dispatch({
         type: 'LOGIN_SUCCESS',
-        payload: res.data,
-        token: res.token,
-        role: res.role
+        payload: {
+          user: res.data,
+          token: res.token,
+          role: res.role
+        }
       })
-
-      // setLoading(false)
+      console.log(res)
+  
       toast.success(res.message)
       navigate('/')
     } catch (error) {
