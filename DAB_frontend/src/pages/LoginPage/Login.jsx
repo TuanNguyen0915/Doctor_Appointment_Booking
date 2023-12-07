@@ -45,7 +45,6 @@ const Login = () => {
           role: res.role
         }
       })
-      console.log(res)
   
       toast.success(res.message)
       navigate('/')

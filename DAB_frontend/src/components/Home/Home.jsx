@@ -41,7 +41,7 @@ const Home = () => {
                     </h2>
                     <span
                       className={`${counter.color} lg:w-[120px] w-[100px] h-2 rounded-full block lg:mt-[-10px] mt-[-14px]`}></span>
-                    <p className="text__para">
+                    <p className="text_para">
                       {counter.text}
                     </p>
                   </div>

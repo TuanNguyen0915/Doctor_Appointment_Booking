@@ -14,7 +14,6 @@ const NavBar = () => {
   const navRef = useRef(null)
   const menuRef = useRef(null)
   const { user, token, role } = useContext(AuthContext)
-  console.log(user)
   const handleStickyMode = () => {
     window.addEventListener('scroll', () => {
       if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -72,7 +71,9 @@ const NavBar = () => {
                       className='w-full rounded-full' />
                   </div>
                 </Link>
-                <h1>Hi, {user.name}</h1>
+                <h1>Hi, <span>
+                  <a href="/users/profile/me" className='hover:text-primaryColor'>{user.name}</a>
+                </span></h1>
 
               </div>
               :

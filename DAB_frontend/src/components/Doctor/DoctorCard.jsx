@@ -37,7 +37,7 @@ const DoctorCard = ({ doctor }) => {
           <h3 className="text-[16px] leading-7 lg:text-[18px] lg:leading-[30px] font-semibold text-headingColor">+{doctor.totalPatients} patients</h3>
           <p className="text-[14px] leading-6 font-[400] text-textColor">At {doctor.hospital}</p>
         </div>
-        <Link to='/doctors' className="my-4 p-3 border-[1px] border-textColor hover:bg-primaryColor hover:text-white hover:border-primaryColor rounded-full ">
+        <Link state={doctor} to={`/doctors/${doctor.id}`} className="my-4 p-3 border-[1px] border-textColor hover:bg-primaryColor hover:text-white hover:border-primaryColor rounded-full ">
                     <BsArrowRight className="w-4 h-4 " />
                   </Link>
       </div>
