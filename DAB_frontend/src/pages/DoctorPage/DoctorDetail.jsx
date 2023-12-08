@@ -6,6 +6,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import Footer from '../../components/Footer/Footer'
 import DoctorAbout from '../../components/Doctor/DoctorAbout'
 import DoctorFeedBack from '../../components/Doctor/DoctorFeedBack'
+import SlidePanel from '../../components/Doctor/Ticket'
 const DoctorDetail = () => {
   const [tab, setTab] = useState('about')
 
@@ -70,8 +71,10 @@ const DoctorDetail = () => {
           </div>
         </div>
       </div>
-        {/* Side Panel */}
-      <div></div>
+      {/* Side Panel */}
+      <div className='md:w-1/3 w-[80%] mx-auto border border-solid border-blue-200 rounded-md mt-10'>
+        <SlidePanel />
+      </div>
       <Footer />
     </>
   )
